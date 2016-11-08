@@ -1,0 +1,55 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<script type="text/javascript">
+
+</script>
+<div class="well well-large" style="height: 140px;padding:10px">
+    <div class="pull-right">
+
+     <img style="height: 128px; width:128px;max-width: 128px " class="img-polaroid" src="{{url_for('static', filename = profpic ) }}" onError="this.onerror=null;this.src='{{user.avatar(128)}}';" />
+
+    </div>
+    <h1 style="font-size: 27.5px;line-height: 0px;">{{user.nickname}}</h1>
+    {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
+    {% if user.last_seen %}<p><em>Last seen on: {{momentjs(user.last_seen).calendar()}}</em></p>{% endif %}
+    <p>Followers: {{user.followers.count()}} | Following: {{user.followed.count()}} |
+        {% if not g.user.is_authenticated%}
+    <a href="{{ url_for('index') }}">Follow</a> | 
+    {% elif user.id == g.user.id %}
+        <a href="{{url_for('edit')}}">Edit your profile</a>
+
+    {% elif not g.user.is_following(user) %}
+        <a href="{{url_for('follow', nickname = user.nickname)}}">Follow</a>
+    {% else %}
+        <a href="{{url_for('unfollow', nickname = user.nickname)}}">Unfollow</a>
+    {% endif %}
+
+    </p>
+    
+</div>
+{% if g.user.is_anonymous%} 
+<div class="panel panel-default">
+  <div class="panel-body">Create a free account to see all features of t-blog</div>
+</div>
+{% endif %}
+
+  {% for post in posts.items %}
+      {% include 'post.html' %}
+  {% endfor %}
+
+<ul class="pager">
+    {% if posts.has_prev %}
+    <li class="previous"><a href="{{ url_for('user', nickname = user.nickname, page = posts.prev_num) }}">Newer posts</a></li>
+    {% else %}
+    <li class="previous disabled"><a href="#">Newer posts</a></li>
+    {% endif %}
+    {% if posts.has_next %}
+    <li class="next"><a href="{{ url_for('user', nickname = user.nickname, page = posts.next_num) }}">Older posts</a></li>
+    {% else %}
+    <li class="next disabled"><a href="#">Older posts</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}

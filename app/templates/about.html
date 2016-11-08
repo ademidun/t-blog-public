@@ -1,0 +1,50 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1>About t-blog</h1>
+
+                <!-- Author -->
+                <p class="lead">
+                    by <a href="http://tomiwa.ca">Tomiwa</a>
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> August 27, 2016 7:37pm</p>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <!-- http://placehold.it/900x300 -->
+                <img class="img-responsive" src="/static/img/about1.png" alt="" height="300" width="900">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p class="lead">T-blog is a blogging application developed in python using the <a href="http://flask.pocoo.org/"> flask </a>microframework and based on<a href="http://blog.miguelgrinberg.com/"> Miguel Grinberg's  </a>tutorial, (thanks Miguel!).This blog is a prototype created by Atila Tech for clients that wish to have an internal social media service for their company. Check out my <a href="http://blog.tomiwa.ca">short essay</a> for my thoughts about this application.</p>
+                <p class="lead">How to use t-blog</p>
+                <p>Ideally, users post (and cite) various quotes that they find interesting on the internet or excerpts from interesting books or articles they read. Please cite all sources.</p>
+                <ol>
+                    <li>Create a Yahoo or AOL account.</li>
+                    <li>Follow any of the following accounts</li>
+                        <ul>
+                            <li><a href="{{url_for('user', nickname = 'galbraith' ) }}">galbraith</a></li>
+                            <li><a href="{{url_for('user', nickname = 'dup' ) }}">dup</a></li>
+                            <li><a href="{{url_for('user', nickname = 'keynes' ) }}">keynes</a></li>
+                        </ul>
+                    <li>Start blogging!</li>
+                </ol>
+                <p>Though the social media </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+
+                <hr>
+    </div>
+
+{% endblock %}
+

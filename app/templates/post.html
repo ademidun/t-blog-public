@@ -1,0 +1,12 @@
+  <table>
+      <tr valign="top">
+          <td><img style="height: 50px; width:50px;max-width: 50px "  src="{{url_for('static', filename ='img/profpic/%s.jpg' % post.author.nickname ) }}" onError="this.onerror=null;this.src='{{post.author.avatar(128)}}';"></td><td>{% autoescape false %}<p>{{ _('%(nickname)s said %(when)s:', nickname = '<a href="%s">%s</a>' % (url_for('user', nickname=post.author.nickname), post.author.nickname), when=momentjs(post.timestamp).fromNow()) }}</p>
+{% endautoescape %}<br>{{ post.body }}</td>
+      </tr>
+      {%if g.user.id %}
+      {% if post.author.id == g.user.id %}
+<div><a href="{{ url_for('delete', id=post.id) }}">{{ _('Delete') }}</a></div>
+{% endif %}
+{% endif %}
+  </table>
+<br>
